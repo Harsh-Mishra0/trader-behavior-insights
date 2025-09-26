@@ -1,4 +1,7 @@
-[# Trader Behavior Insights
+[# Trader Behavior Insights #]
+
+![Python](https://img.shields.io/badge/python-3.11-blue)
+![Status](https://img.shields.io/badge/status-completed-green)
 
 ## Overview
 This project analyzes the relationship between **market sentiment** (Fear/Greed Index) and **trader performance** using historical trading data from Hyperliquid. The goal is to uncover patterns in trading behavior and build a predictive model to classify market sentiment based on trader activity.
