@@ -1,4 +1,4 @@
-# Trader Behavior Insights
+[# Trader Behavior Insights
 
 ## Overview
 This project analyzes the relationship between **market sentiment** (Fear/Greed Index) and **trader performance** using historical trading data from Hyperliquid. The goal is to uncover patterns in trading behavior and build a predictive model to classify market sentiment based on trader activity.
@@ -83,3 +83,4 @@ This project analyzes the relationship between **market sentiment** (Fear/Greed 
 ```bash
 git clone https://github.com/yourusername/trader-behavior-insights.git
 cd trader-behavior-insights
+](https://github.com/Harsh-Mishra0/trader-behavior-insights/tree/main)
