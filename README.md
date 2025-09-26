@@ -14,7 +14,7 @@ This project analyzes the relationship between **market sentiment** (Fear/Greed 
 2. **Historical Trader Data (Hyperliquid)**
    - Columns: `account`, `symbol`, `execution price`, `size`, `side`, `time`, `start position`, `event`, `closedPnL`, `leverage`, etc.
 
-> **Note:** Large datasets are not included in this repository. You can replace them in a `data/` folder if needed.
+
 
 ---
 
