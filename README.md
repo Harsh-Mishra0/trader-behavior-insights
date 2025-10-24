@@ -1,89 +1,94 @@
-### Trader Behavior Insights
-
-![Python](https://img.shields.io/badge/python-3.11-blue)
-![Status](https://img.shields.io/badge/status-completed-green)
+# Junior Data Scientist – Trader Behavior Insights
 
 ## Overview
-This project analyzes the relationship between **market sentiment** (Fear/Greed Index) and **trader performance** using historical trading data from Hyperliquid. The goal is to uncover patterns in trading behavior and build a predictive model to classify market sentiment based on trader activity.
+This project analyzes the relationship between **trader performance** and **Bitcoin market sentiment** using historical trader data from Hyperliquid and the Bitcoin Fear & Greed Index. The goal is to uncover hidden patterns, behavioral insights, and actionable trading strategies.  
 
 ---
 
-## Datasets
-1. **Bitcoin Market Sentiment Dataset**
-   - Columns: `Date`, `Classification` (Fear/Greed)
-2. **Historical Trader Data (Hyperliquid)**
-   - Columns: `account`, `symbol`, `execution price`, `size`, `side`, `time`, `start position`, `event`, `closedPnL`, `leverage`, etc.
+## Dataset
+1. **Historical Trader Data** (`trader_data_hyperliquid.csv`)  
+   - Columns include: `account`, `symbol`, `execution price`, `size`, `side`, `time`, `start position`, `event`, `closedPnL`, `leverage`, etc.  
+   - Captures individual trader activity, trades executed, and profit/loss.  
 
+2. **Bitcoin Market Sentiment Data** (`fear_greed_index.csv`)  
+   - Columns: `Date`, `Classification` (e.g., Fear, Greed)  
+   - Represents daily market sentiment using the Fear & Greed Index.  
 
-
----
-
-## Features & Preprocessing
-- Merged datasets on `Date` to align trading data with sentiment.
-- Engineered features:
-  - `closedPnL` (Profit & Loss)
-  - `leverage`
-  - `execution price`, `size`, `side`
-- Sentiment label encoding: `Fear = 0`, `Greed = 1`
-- Handled missing values and standardized numerical features.
+> **Note:** Ensure both CSV files are in the same directory as the notebook before running the analysis.  
 
 ---
 
-## Exploratory Data Analysis (EDA)
-- Distribution of PnL under Fear vs Greed
-- Leverage analysis vs sentiment
-- Correlation heatmaps to identify important features
+## Environment
+- Python 3.12  
+- Libraries used:  
+  - `pandas` (data manipulation)  
+  - `numpy` (numerical operations)  
+  - `matplotlib` & `seaborn` (visualizations)  
 
 ---
 
-## Modeling
-**Model Used:** Random Forest Classifier  
-**Features:** `closedPnL`, `leverage`, `execution price`, `size`, `side`  
-**Hyperparameters:**  
-- `n_estimators = 100`  
-- `max_depth = 10`  
-- `random_state = 42`  
+## Project Workflow
+1. **Data Loading**  
+   - Load the trader data and sentiment data CSV files.  
+   - Inspect columns and data types.  
 
-**Training Strategy:**  
-- 80/20 train-test split  
-- Stratified sampling for class balance  
+2. **Data Cleaning & Preprocessing**  
+   - Convert timestamps to `datetime` objects.  
+   - Ensure numeric columns (`closedPnL`, `size`) are clean.  
+   - Handle missing values.  
 
----
+3. **Feature Engineering**  
+   - Aggregate trader data to calculate **daily PnL**, total volume, and number of trades per trader.  
+   - Extract daily sentiment labels.  
 
-## Evaluation
-| Metric      | Value |
-|------------|-------|
-| Accuracy    | 0.89  |
-| F1-Score   | 0.89  |
-| ROC-AUC    | 0.92  |
+4. **Exploratory Data Analysis (EDA)**  
+   - Analyze overall trader performance against market sentiment.  
+   - Compare average PnL across Fear and Greed days.  
 
-**Feature Importance:**
-| Feature       | Importance |
-|---------------|------------|
-| `closedPnL`   | 0.42       |
-| `leverage`    | 0.33       |
-| `execution price` | 0.15   |
-| Others        | 0.10       |
+5. **Trader Segmentation & Deep Dive**  
+   - Segment traders into **Top 25% (Successful)**, **Bottom 25% (Unsuccessful)**, and **Mid-Tier** based on total PnL.  
+   - Evaluate segment performance under different market sentiments.  
+
+6. **Trading Activity Analysis**  
+   - Calculate total buy/sell volume by sentiment.  
+   - Analyze net flow and buy/sell imbalances.  
+
+7. **Insights & Strategy Recommendation**  
+   - Summarize key findings from data analysis.  
+   - Propose a simple sentiment-driven trading strategy based on successful trader behavior.  
+
+8. **Optional Enhancements**  
+   - Export merged datasets for further use.  
+   - Enhanced visualizations: heatmaps, pie charts, line charts.  
 
 ---
 
 ## Key Insights
-- High leverage trades are more frequent in **Greed** periods.
-- Traders experience more losses during **Fear** periods.
-- `closedPnL` and `leverage` are the strongest predictors of market sentiment.
-
----
-
-## Future Work
-- Predict trader performance using **lagged sentiment** data.
-- Compare with other models like **XGBoost** or **Logistic Regression**.
-- Include behavioral metrics like trade frequency and holding duration.
+- Traders perform differently under Fear and Greed conditions.  
+- Successful traders often profit more during certain sentiment periods (e.g., Fear).  
+- Buy/Sell imbalances provide opportunities for contrarian strategies.  
+- Net flow analysis highlights market participation patterns under different sentiment levels.  
 
 ---
 
 ## How to Run
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/trader-behavior-insights.git
-cd trader-behavior-insights
-](https://github.com/Harsh-Mishra0/trader-behavior-insights/tree/main)
+1. Place the CSV files in the same directory as the notebook.  
+2. Open the Jupyter Notebook (`Trader_Behavior_Insights.ipynb`).  
+3. Run the cells sequentially from 1 to 10.  
+4. Optional: Export the results using the provided cells.  
+
+---
+
+## Files Included
+- `Trader_Behavior_Insights.ipynb` – Main notebook with all analysis  
+- `trader_data_hyperliquid.csv` – Historical trader data  
+- `fear_greed_index.csv` – Bitcoin market sentiment data  
+- `trader_sentiment_analysis.csv` – Exported merged dataset (optional)  
+- `segment_pnl_summary.csv` – Exported segment-level summary (optional)  
+
+---
+
+## Future Enhancements
+- Include **time-lagged sentiment effects** on PnL.  
+- Explore **leverage impact** on trader performance.  
+- Develop **interactive dashboards** for real-time insights.  
